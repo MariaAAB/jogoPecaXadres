@@ -26,5 +26,28 @@ int main()
         movimentoPecaRainha++;
     } while (movimentoPecaRainha < 8);
 
+    // movimentando a peca cavalo
+    int primeiroMovimentoPecaCavalo = 2;  // duas casas para baixo
+    int segundoMovimentoPecaCavalo = 1;   // uma casa para esquerda
+    
+    printf("\nMovimento da peca: Cavalo \n");
+    
+    for (int i = 0; i < primeiroMovimentoPecaCavalo + segundoMovimentoPecaCavalo; i++)
+    {
+        int movimentos = 0;
+        while (movimentos < 1)
+        {
+            if (i < primeiroMovimentoPecaCavalo)
+            {
+                printf("Baixo\n");
+            }
+            else
+            {
+                printf("Esquerda\n");
+            }
+            movimentos++;
+        }
+    }
+
     return 0;
 }
