@@ -1,51 +1,94 @@
 #include <stdio.h>
 
+void movimentarTorre(int movimentos)
+{
+    if(movimentos > 0)
+    {
+        printf("Direita \n");
+        movimentarTorre(movimentos - 1);
+    }
+}
+
+
+void movimentarBispo(int movimentos)
+{
+    if(movimentos > 0)
+    {
+        
+        for (int i = 0; i < movimentos; i++)
+        {
+            printf("Cima, ");
+            for (int j = 0; j < 1; j++)
+            {
+                printf("Direita \n");
+            }
+        }
+        
+        movimentarBispo(movimentos - movimentos -1);
+    }
+}
+
+void movimentarRainha(int movimentos)
+{
+    if(movimentos > 0)
+    {
+        printf("Esquerda \n");
+        movimentarRainha(movimentos - 1);
+    }
+}
+
 int main()
 {
     // movimentando a peca torre
 
     printf("Movimento da peca: Torre \n");
-    for (int i = 0; i < 5; i++)
-    {
-        printf("Direita \n");
-    }
+    movimentarTorre(5);
 
     int movimentoPecaBispo = 0;
     printf("\nMovimento da peca: Bispo \n");
-    while (movimentoPecaBispo < 5)
-    {
-        printf("Cima, Direita \n");
-        movimentoPecaBispo++;
-    }
+    movimentarBispo(5);
 
     int movimentoPecaRainha = 0;
     printf("\nMovimento da peca: Rainha \n");
-    do
-    {
-        printf("Esquerda \n");
-        movimentoPecaRainha++;
-    } while (movimentoPecaRainha < 8);
-
+    movimentarRainha(8);
     // movimentando a peca cavalo
-    int primeiroMovimentoPecaCavalo = 2;  // duas casas para baixo
-    int segundoMovimentoPecaCavalo = 1;   // uma casa para esquerda
+    int primeiroMovimentoPecaCavalo = 2;  // duas casas para cima
+    int segundoMovimentoPecaCavalo = 1;   // uma casa para direita
     
     printf("\nMovimento da peca: Cavalo \n");
     
-    for (int i = 0; i < primeiroMovimentoPecaCavalo + segundoMovimentoPecaCavalo; i++)
+    // Loops aninhados com múltiplas variáveis e condições
+    int i = 0;
+    while (i < primeiroMovimentoPecaCavalo + segundoMovimentoPecaCavalo)
     {
-        int movimentos = 0;
-        while (movimentos < 1)
+        int j = 0;
+        for (j = 0; j < 2; j++)
         {
-            if (i < primeiroMovimentoPecaCavalo)
+           
+            if (i < primeiroMovimentoPecaCavalo && j == 0)
             {
-                printf("Baixo\n");
+                printf("Cima\n");
+                i++;
+                if (i >= primeiroMovimentoPecaCavalo)
+                {
+                    continue;  
+                }
             }
-            else
+            else if (i >= primeiroMovimentoPecaCavalo && j == 1)
             {
-                printf("Esquerda\n");
+                
+                for (int k = 0; k < segundoMovimentoPecaCavalo; k++)
+                {
+                    printf("Direita\n");
+                }
+                i++;
+                break;  // Sai do loop interno após completar o movimento para direita
             }
-            movimentos++;
+        }
+        
+        if (i >= primeiroMovimentoPecaCavalo + segundoMovimentoPecaCavalo)
+        {
+            break;
         }
     }
 
